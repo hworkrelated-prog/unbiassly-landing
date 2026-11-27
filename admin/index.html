@@ -226,6 +226,8 @@ footer{padding:40px 0 48px;color:var(--ink-3);font-size:14px}
 @media (max-width:640px){.optin{padding:26px 20px;border-radius:24px}.oform .row{grid-template-columns:1fr}.oform .btn{width:100%}}
 .optin h2 em,.page h1 em{font-style:italic;color:var(--ink-2)}
 .status:empty{display:none}
+.consent a{text-decoration:underline;text-underline-offset:2px;color:var(--ink)}
+.consent.sms{font-size:13px;line-height:1.55;margin-top:-4px}
 
 .login{max-width:420px;margin:12vh auto 0;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:38px 34px;box-shadow:0 30px 60px -44px rgba(20,19,15,.35)}
 .login .mark{width:40px;height:40px;margin-bottom:18px}
@@ -258,6 +260,8 @@ td.name{font-weight:600}
 td a{border-bottom:1px solid var(--line-2)}
 .chipi{display:inline-block;font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:#f2f0ea;white-space:nowrap}
 .chipi.TskFlow{background:#e8f3f1;color:#0f766e}.chipi.SellDispatch{background:#fbeee4;color:#b4541a}.chipi.TomaFreight{background:#fff1e3;color:#c35f0a}
+.chipi.yes{background:#e8f3f1;color:#0f766e}
+.smsd{display:block;color:var(--ink-3);font-size:12px;margin-top:3px}
 .del{border:0;background:none;color:var(--ink-3);cursor:pointer;font-size:13px;padding:4px 8px;border-radius:8px}
 .del:hover{background:#fff1ec;color:#c2410c}
 .empty{padding:56px 20px;text-align:center;color:var(--ink-3)}
@@ -317,7 +321,7 @@ td a{border-bottom:1px solid var(--line-2)}
     <div class="stats" id="stats"></div>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Phone</th><th>Interest</th><th></th></tr></thead>
+        <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Phone</th><th>SMS consent</th><th>Interest</th><th></th></tr></thead>
         <tbody id="rows"></tbody>
       </table>
       <div class="empty" id="empty" hidden>No opt-ins yet.</div>
@@ -363,10 +367,12 @@ td a{border-bottom:1px solid var(--line-2)}
     $('rows').innerHTML=list.map(function(o){var d=new Date(o.createdAt);
       return '<tr><td class="when">'+esc(fmt.format(d))+'<small>'+esc(fmtT.format(d))+'</small></td><td class="name">'+esc(o.name)+'</td>'+
       '<td><a href="mailto:'+esc(o.email)+'">'+esc(o.email)+'</a></td><td>'+(o.phone?'<a href="tel:'+esc(o.phone.replace(/[^+\d]/g,''))+'">'+esc(o.phone)+'</a>':'<span style="color:var(--ink-3)">—</span>')+'</td>'+
+      '<td>'+(o.smsConsent?'<span class="chipi yes">Yes</span><small class="smsd">'+esc(fmt.format(new Date(o.smsConsentAt)))+'</small>':'<span style="color:var(--ink-3)">No</span>')+'</td>'+
       '<td><span class="chipi '+esc(o.interest)+'">'+esc(o.interest)+'</span></td><td><button class="del" data-id="'+esc(o.id)+'" title="Delete">Delete</button></td></tr>'}).join('');
     var by={}; data.forEach(function(o){by[o.interest]=(by[o.interest]||0)+1});
+    var sm=data.filter(function(o){return o.smsConsent}).length;
     var wk=data.filter(function(o){return Date.now()-new Date(o.createdAt)<7*864e5}).length;
-    $('stats').innerHTML='<span class="stat"><b>'+wk+'</b>this week</span>'+Object.keys(by).sort().map(function(k){return '<span class="stat"><b>'+by[k]+'</b>'+esc(k)+'</span>'}).join('');
+    $('stats').innerHTML='<span class="stat"><b>'+wk+'</b>this week</span><span class="stat"><b>'+sm+'</b>SMS opted in</span>'+Object.keys(by).sort().map(function(k){return '<span class="stat"><b>'+by[k]+'</b>'+esc(k)+'</span>'}).join('');
   }
   function load(){
     $('dstatus').textContent='Loading…'; $('dstatus').classList.remove('bad');
