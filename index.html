@@ -179,6 +179,55 @@ footer{padding:40px 0 48px;color:var(--ink-3);font-size:14px}
   .socials a{width:38px;height:38px}
   .socials svg{width:16px;height:16px}
 }
+/* Opt-in */
+.optin{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:44px;display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start;box-shadow:0 30px 60px -44px rgba(20,19,15,.35)}
+.optin h2{margin-top:14px}
+.optin .intro p{color:var(--ink-2);font-size:16.5px;margin:16px 0 22px;max-width:420px}
+.optin .perks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.optin .perks li{display:flex;gap:11px;align-items:flex-start;font-size:15px;font-weight:500;color:var(--ink-2)}
+.optin .perks svg{flex:none;width:18px;height:18px;margin-top:3px;color:var(--orange)}
+.oform{display:grid;gap:16px}
+.oform .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:grid;gap:7px}
+.field label,.field .lbl{font-size:13.5px;font-weight:600;color:var(--ink)}
+.field label small{font-weight:500;color:var(--ink-3)}
+.field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=password]{height:50px;padding:0 16px;border-radius:14px;border:1px solid var(--line-2);background:#fbfaf7;font:500 15.5px var(--sans);color:var(--ink);transition:border-color .2s,box-shadow .2s,background .2s;width:100%}
+.field input:focus{outline:none;border-color:var(--ink);background:#fff;box-shadow:0 0 0 4px rgba(20,19,15,.07)}
+.field.bad input{border-color:#c2410c;background:#fff8f3}
+.field .err{font-size:13px;color:#c2410c;min-height:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills label{cursor:pointer}
+.pills input{position:absolute;opacity:0;pointer-events:none}
+.pills span{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line-2);background:#fbfaf7;font-size:14px;font-weight:600;color:var(--ink-2);transition:all .2s}
+.pills label:hover span{border-color:rgba(20,19,15,.3)}
+.pills input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.pills input:focus-visible+span{box-shadow:0 0 0 4px rgba(20,19,15,.12)}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--ink-2);line-height:1.5;cursor:pointer}
+.consent input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink)}
+.consent.bad{color:#c2410c}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.oform .btn{border:0;cursor:pointer;justify-content:center;font-family:var(--sans)}
+.oform .btn[disabled]{opacity:.75;cursor:progress;transform:none!important}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:sp .7s linear infinite;display:none}
+.busy .spin{display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+.status{font-size:14px;color:var(--ink-3);min-height:20px;margin:0}
+.status.bad{color:#c2410c}
+.fine{font-size:12.5px;color:var(--ink-3);margin:0}
+.fine a{text-decoration:underline;text-underline-offset:2px}
+.done{display:none;text-align:center;padding:26px 10px}
+.done .tick{width:64px;height:64px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;background:color-mix(in srgb,var(--teal) 12%,transparent);color:var(--teal)}
+.done .tick svg{width:30px;height:30px}
+.done h3{font-family:var(--serif);font-weight:400;font-size:38px;line-height:1.05;margin:0 0 10px;letter-spacing:-.02em}
+.done p{color:var(--ink-2);margin:0 auto 22px;max-width:380px}
+.sent .oform{display:none}
+.sent .done{display:block;animation:pop .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (max-width:980px){.optin{grid-template-columns:1fr;gap:28px;padding:36px 32px}}
+@media (max-width:640px){.optin{padding:26px 20px;border-radius:24px}.oform .row{grid-template-columns:1fr}.oform .btn{width:100%}}
+.optin h2 em,.page h1 em{font-style:italic;color:var(--ink-2)}
+.status:empty{display:none}
+
 </style>
 </head>
 <body class="no-js">
@@ -199,6 +248,7 @@ footer{padding:40px 0 48px;color:var(--ink-3);font-size:14px}
       <a href="#saas">SaaS</a>
       <a href="#dispatch">Truck dispatching</a>
       <a href="#founder">Founder</a>
+      <a href="#optin">Stay updated</a>
     </nav>
   </div>
 </header>
@@ -375,6 +425,66 @@ footer{padding:40px 0 48px;color:var(--ink-3);font-size:14px}
       </div>
     </div>
   </section>
+  <section class="block" id="optin" style="padding-top:8px">
+    <div class="wrap">
+      <div class="optin reveal">
+        <div class="intro">
+          <span class="eyebrow">Stay updated</span>
+          <h2>Hear from us<br><em>first.</em></h2>
+          <p>Leave your details and we'll keep you posted on new products, launches and openings across Unbiassly, Inc.</p>
+          <ul class="perks">
+            <li><svg><use href="#check"/></svg>Product news from TskFlow and SellDispatch</li>
+            <li><svg><use href="#check"/></svg>Dispatch openings and updates from TomaFreight</li>
+            <li><svg><use href="#check"/></svg>A few emails a month at most. Unsubscribe anytime.</li>
+          </ul>
+        </div>
+        <div class="formbox" id="optin-box">
+  <form class="oform" id="optin-form" novalidate>
+    <div class="row">
+      <div class="field" data-f="name">
+        <label for="o-name">Name</label>
+        <input id="o-name" name="name" type="text" autocomplete="name" maxlength="100" required placeholder="Your full name">
+        <span class="err" aria-live="polite"></span>
+      </div>
+      <div class="field" data-f="email">
+        <label for="o-email">Email</label>
+        <input id="o-email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="you@example.com">
+        <span class="err" aria-live="polite"></span>
+      </div>
+    </div>
+    <div class="field" data-f="phone">
+      <label for="o-phone">Phone <small>(optional)</small></label>
+      <input id="o-phone" name="phone" type="tel" autocomplete="tel" maxlength="32" placeholder="+1 555 123 4567">
+      <span class="err" aria-live="polite"></span>
+    </div>
+    <div class="field" role="radiogroup" aria-labelledby="o-int">
+      <span class="lbl" id="o-int">What are you interested in?</span>
+      <div class="pills">
+        <label><input type="radio" name="interest" value="TskFlow"><span>TskFlow</span></label>
+        <label><input type="radio" name="interest" value="SellDispatch"><span>SellDispatch</span></label>
+        <label><input type="radio" name="interest" value="TomaFreight"><span>TomaFreight</span></label>
+        <label><input type="radio" name="interest" value="General" checked><span>A bit of everything</span></label>
+      </div>
+    </div>
+    <div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label class="consent" data-f="consent">
+      <input type="checkbox" name="consent" id="o-consent">
+      <span>Yes, Unbiassly, Inc. can email me (and text me if I added a phone) about its products and services. I can unsubscribe at any time.</span>
+    </label>
+    <button class="btn primary" type="submit"><span class="spin" aria-hidden="true"></span><span class="lbl-txt">Keep me posted</span> <svg class="ar"><use href="#arrow"/></svg></button>
+    <p class="status" role="status" aria-live="polite"></p>
+    <p class="fine">We never sell your details. Questions? <a href="mailto:info@tomafreight.com">info@tomafreight.com</a></p>
+  </form>
+  <div class="done" tabindex="-1">
+    <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h3>You're on the list.</h3>
+    <p>Thanks<span class="who"></span>! We'll be in touch with updates from Unbiassly, Inc. No spam, ever.</p>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -401,6 +511,59 @@ footer{padding:40px 0 48px;color:var(--ink-3);font-size:14px}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
   els.forEach(function(e){io.observe(e)});
 })();
+</script>
+<script>
+(function(){
+  var API='https://unbiassly-optin-api.onrender.com';
+  var box=document.getElementById('optin-box'); if(!box) return;
+  var f=document.getElementById('optin-form'), btn=f.querySelector('button[type=submit]'), st=f.querySelector('.status'), lbl=btn.querySelector('.lbl-txt');
+  var warmed=false; function warm(){ if(warmed) return; warmed=true; try{fetch(API+'/health',{mode:'cors',cache:'no-store'}).catch(function(){})}catch(e){} }
+  f.addEventListener('focusin',warm,{once:true});
+  if(box.hasAttribute('data-warm')) warm();
+  if('IntersectionObserver' in window){var wo=new IntersectionObserver(function(es){if(es[0].isIntersecting){warm();wo.disconnect()}});wo.observe(box)}
+  var EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function setErr(name,msg){var el=f.querySelector('[data-f="'+name+'"]'); if(!el) return; el.classList.toggle('bad',!!msg); var e=el.querySelector('.err'); if(e) e.textContent=msg||'';}
+  function validate(d){
+    var e={};
+    if(d.name.length<2) e.name='Please enter your name.';
+    if(!EMAIL.test(d.email)) e.email='Please enter a valid email.';
+    if(d.phone && !/^[+()\-.\s\d]{7,32}$/.test(d.phone)) e.phone='Please enter a valid phone number.';
+    if(!d.consent) e.consent='Please tick the box to agree.';
+    return e;
+  }
+  ['name','email','phone'].forEach(function(n){var i=f.elements[n]; i.addEventListener('input',function(){setErr(n,'')})});
+  f.elements.consent.addEventListener('change',function(){setErr('consent','')});
+  function busy(on){btn.disabled=on;btn.classList.toggle('busy',on);lbl.textContent=on?'Sending…':'Keep me posted';}
+  function post(d,ms){
+    var ctl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){ctl&&ctl.abort()},ms);
+    return fetch(API+'/api/optin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),signal:ctl&&ctl.signal})
+      .then(function(r){clearTimeout(t);return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,status:r.status,j:j}})},function(err){clearTimeout(t);throw err});
+  }
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault(); if(btn.disabled) return;
+    var d={name:f.elements.name.value.trim(),email:f.elements.email.value.trim(),phone:f.elements.phone.value.trim(),
+      interest:(f.querySelector('input[name=interest]:checked')||{}).value||'General',consent:f.elements.consent.checked,
+      website:f.elements.website.value,source:location.pathname.indexOf('/optin')===0?'unbiassly.com/optin':'unbiassly.com'};
+    ['name','email','phone','consent'].forEach(function(n){setErr(n,'')}); st.textContent=''; st.classList.remove('bad');
+    var e=validate(d); var ks=Object.keys(e);
+    if(ks.length){ks.forEach(function(k){setErr(k,e[k])}); var first=f.elements[ks[0]]; first&&first.focus&&first.focus(); return;}
+    busy(true);
+    var slow=setTimeout(function(){st.textContent='Waking up our server. This can take up to a minute the first time…'},5000);
+    var attempt=function(n){
+      return post(d,70000).catch(function(err){ if(n<1) return new Promise(function(r){setTimeout(r,2000)}).then(function(){return attempt(n+1)}); throw err; });
+    };
+    attempt(0).then(function(r){
+      clearTimeout(slow); busy(false);
+      if(r.ok){ var w=box.querySelector('.who'); if(w) w.textContent=', '+d.name.split(' ')[0]; box.classList.add('sent'); var dn=box.querySelector('.done'); dn&&dn.focus({preventScroll:true}); return; }
+      if(r.j&&r.j.fields){Object.keys(r.j.fields).forEach(function(k){setErr(k,r.j.fields[k])});}
+      st.textContent=(r.j&&r.j.error)||'Something went wrong. Please try again.'; st.classList.add('bad');
+    }).catch(function(){
+      clearTimeout(slow); busy(false);
+      st.textContent='We could not reach the server. Please check your connection and try again.'; st.classList.add('bad');
+    });
+  });
+})();
+
 </script>
 </body>
 </html>
